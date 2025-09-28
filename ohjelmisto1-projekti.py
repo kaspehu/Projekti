@@ -120,7 +120,6 @@ def update_location(icao, p_range, u_money, g_id):
     cursor.execute(sql, (icao, p_range, u_money, g_id))
 
 #bossi ohjelma
-import random
 #snail = 5 en saanu toimii 0 arvolla jostai syystä
 golden_egg = 0
 def boss():
