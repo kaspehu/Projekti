@@ -1,5 +1,5 @@
 import textwrap
-
+#testi
 tarina = """You wake up with a hazy memory and a piercing headache. You do not know where you are nor why.
 The last thing in your mind is a faint recall of a decision you've made. You're not yet aware of this,
 but your greed related to this decision has caused you your current situation.
