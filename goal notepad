@@ -9,8 +9,8 @@ create table goal
      charset = latin1;
  
  insert into goal (id, name, money, probability)
- values  (1, 'Golden Ball', 0, 25),
-         (2, 'Adhesive', 1, 1),
-         (3, 'Snail Adhesive', 2, 1),
-         (4, 'Shail Shield', 3, 1),
-         (5, 'Raging Diarrhea', 4, 1);
+ values  (1, 'SNAIL SHIELD', 1, 3),
+         (2, 'SNAIL ADHESIVE', 2, 7),
+         (3, 'GOLDEN BALL', 3, 10),
+         (4, 'HEADACHE', 4, 7),
+         (5, 'RAGING DIARRHEA', 5, 3);
