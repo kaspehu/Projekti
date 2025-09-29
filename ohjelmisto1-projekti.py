@@ -8,9 +8,9 @@ import mysql.connector
 conn = mysql.connector.connect(
     host='localhost',
     port=3306,
-    database='',
-    user='',
-    password='',
+    database='demopelikanta',
+    user='demo',
+    password='peli',
     autocommit=True
 )
 
@@ -26,7 +26,7 @@ FROM airport
 WHERE iso_country = 'BR' 
 AND type='medium_airport'
 ORDER by RAND()
-LIMIT 30;"""
+LIMIT 31;"""
     cursor = conn.cursor(dictionary=True)
     cursor.execute(sql)
     result = cursor.fetchall()
