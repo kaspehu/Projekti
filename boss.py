@@ -15,7 +15,7 @@ def boss():
     player_hp = 8  # defining hp values
     game = True
     if boss_chance == 1: #if fight
-        print("The egg is guarded by a golden guardian. The only way forward is to fight the guardian!")
+        print("The ball is guarded by a golden guardian. The only way forward is to fight the guardian!")
         print("You fight the guardian")
         while game == True: #while loop to play until hp reaches 0
 
@@ -37,7 +37,7 @@ def boss():
                     player_hp = 8
                     boss_hp = 8
                 elif try_again == "N":
-                    print("You flee from the guardian abandoning the golden egg.")
+                    print("You flee from the guardian abandoning the golden ball.")
                     game == False
                     return golden_ball, snail
                 if snail == 5:
@@ -89,7 +89,7 @@ def boss():
                     snail = snail - 1
                     print(f"---You have defeated the guardian!!!---")
                     print(f"You feel the snail slowing down")
-                    print("You grab the golden egg!")
+                    print("You grab the golden ball!")
                     game == False
                     return golden_ball, snail
                 elif player_hp <= 0: #when lost
@@ -104,24 +104,23 @@ def boss():
                             player_hp = 8
                             boss_hp = 8
                     elif try_again == "N":
-                            print("You flee from the guardian abandoning the golden egg.")
+                            print("You flee from the guardian abandoning the golden ball.")
                             game == False
                             return golden_ball, snail
                     if snail == 5:
                         return golden_ball, snail
 
-    elif boss_chance == 2:# return egg if no fight
-        golden_egg =+ 1
+    elif boss_chance == 2:# return ball if no fight
+        golden_ball =+ 1
         snail = snail - 1
-        print("You grab the golden egg!")
+        print("You grab the golden ball!")
         print("You feel the snail slowing down")
-        return golden_egg, snail
+        return golden_ball, snail
 
 new_golden_ball, snail = boss()
-golden_ball = new_golden_ball + golden_ball #to get new value for golden egg
+golden_ball = new_golden_ball + golden_ball #to get new value for golden ball
 #snail = snail + new_snail #to get new value for snail
-print(f"You have a total of {golden_ball} golden eggs")
-print(snail)
+print(f"You have a total of {golden_ball} golden balls")
 print(f"Snail is {5 - snail} turns away from you") #updated information from after the boss"""
 
 
