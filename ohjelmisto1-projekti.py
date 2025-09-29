@@ -20,14 +20,14 @@ conn = mysql.connector.connect(
 # FUNCTIONS
 
 # removed continent and used brazil as game base, with medium airports
-# select 30 airports for the game
+# select 31 airports for the game
 def get_airports():
     sql = """SELECT ident, name, type, latitude_deg, longitude_deg
 FROM airport
 WHERE iso_country = 'BR' 
 AND type='medium_airport'
 ORDER by RAND()
-LIMIT 30;"""
+LIMIT 31;""" # muutettu limit 31, koska probabilitys yhteensä 30kpl
     cursor = conn.cursor(dictionary=True)
     cursor.execute(sql)
     result = cursor.fetchall()
@@ -185,23 +185,35 @@ while not game_over:
         print('Snail Got you, Game over!')
         game_over = True
 
-    if goal:
-        snail -= 1  # subtract 1 when finding treasure, snail "slows down" for one turn
-        question = input(
-            f'''Do you want to open lootbox (Y/N): ''')
-        if not question == 'N':
-
-            if goal['money'] > 0:
+        if goal: 
+        f"There's something in the airport..."
+            if goal['money'] == 300: # topaz = "snail shield", tietokannassa muutettu vain probability 4 -> 3
                 money += goal['money']
-                print(f'''Congratulations! You found {goal['name']}. That is worth {goal['money']}$.''')
-                print(f'''You have now {money:.0f}$''')
-            elif goal['money'] == 0:
-                golden_ball += 1
-                print(f'''Congratulations! You found A Golden Ball.''')
+                snail -= 2
+                print(f"Congratulations! You've found a snail shield")
+                print(f"The snail won't be able to touch you for a while")
                 input("\033[32mPress Enter to continue...\033[0m")
-            else:
-                money = 0
-                print(f'''Oh no! You have been robbed. You lost all your money''')
+            elif goal['money'] == 600: # emerald = "snail adhesive",tietokannassa muutettu vain probability 3 -> 7
+                money += goal['money']
+                snail -= 1
+                print(f"Congratulations! You've found snail adhesive")
+                print(f"The Snail slows down...")
+                input("\033[32mPress Enter to continue...\033[0m")
+            elif goal['money'] == 1000: # ruby = "golden ball", tietokannassa muutettu vain probability 2 -> 10
+                money += goal['money']
+                snail -= 1
+                golden_ball += 1
+                print(f"Congratulations! You've found a golden ball.")
+                input("\033[32mPress Enter to continue...\033[0m")
+            elif goal['money'] == 0: # diamond = "headache", tietokannassa mutettu vain probability 1 -> 7
+                win = True
+                snail += 1
+                print(f'''You get a horrible headache.''')
+                print("The snail catches up...")
+                input("\033[32mPress Enter to continue...\033[0m")
+            else:                    # muussa taupauksessa bandit = "raging diarrhea", probability sama eli 3
+                print(f'''Your stomach aches like crazy...''')
+                print("The snail lurks in closer...")
                 input("\033[32mPress Enter to continue...\033[0m")
 
 
