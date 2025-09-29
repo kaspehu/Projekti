@@ -2,7 +2,7 @@ import random
 
 #bossi program
 
-snail = 4
+snail = 0
 golden_ball = 0
 def boss():
     global snail
