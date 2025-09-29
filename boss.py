@@ -1,18 +1,19 @@
 import random
 
-#bossi ohjelma
-snail = 0
-golden_egg = 0
+#bossi program
+
+snail = 4
+golden_ball = 0
 def boss():
+    global snail
     boss_chance = random.randint(1, 2)
     smash = random.randint(1, 2)
-    stab = random.randint(-1, 3)  # weapon stats per bossfight
-    #shoot = random.randint(-2, 4) #real value
-    shoot = 7 #for fast testing
+    stab = random.randint(-1, 3)  # weapon stats per airport boss
+    shoot = random.randint(-2, 4) #real value
+    #shoot = 7 #for fast testing
     boss_hp = 8
     player_hp = 8  # defining hp values
     game = True
-    snail = 0
     if boss_chance == 1: #if fight
         print("The egg is guarded by a golden guardian. The only way forward is to fight the guardian!")
         print("You fight the guardian")
@@ -23,13 +24,24 @@ def boss():
             guardian_attack = random.randint(1, 2)
             print(f"The guardian attacks you dealing {guardian_attack} damage")
             player_hp = player_hp - guardian_attack
-            if player_hp <= 0: #checking inbetween guardian attacks and player attacks
-                game == False
+            if player_hp <= 0:  # when lost
+                golden_ball = 0
+                snail = snail + 1
                 print("You have lost the battle")
-                print("The snail gains some speed")
-                golden_egg = + 1 - 1
-                snail = + 1
-                return golden_egg, snail
+                print("The Snail gains some speed")
+                print(snail)
+                try_again = input("Do you want to try again? Y/N:").capitalize().strip()
+                if try_again == "Y" and snail < 5:
+                    print(f"The snail is {5 - snail} turns away from you")
+                    print("You prepare to fight again.")
+                    player_hp = 8
+                    boss_hp = 8
+                elif try_again == "N":
+                    print("You flee from the guardian abandoning the golden egg.")
+                    game == False
+                    return golden_ball, snail
+                if snail == 5:
+                    return golden_ball, snail
             elif game == True:
                 print(f"You have {player_hp} health left")
                 attack = input("Would you like to smash, stab or shoot the guardian?").lower()
@@ -73,32 +85,43 @@ def boss():
                         print(f"You have {player_hp} health left")
 
                 if boss_hp <= 0: #when victorious
-                    golden_egg =+ 1
-                    snail =- 1
+                    golden_ball =+ 1
+                    snail = snail - 1
                     print(f"---You have defeated the guardian!!!---")
                     print(f"You feel the snail slowing down")
                     print("You grab the golden egg!")
                     game == False
-                    return golden_egg, snail
+                    return golden_ball, snail
                 elif player_hp <= 0: #when lost
-                    golden_egg =+ 1 - 1
-                    snail =+ 1
+                    golden_ball = 0
+                    snail = snail + 1
                     print("You have lost the battle")
                     print("The Snail gains some speed")
-
-                    game == False
-                    return golden_egg, snail
-
+                    try_again = input("Do you want to try again? Y/N:").capitalize().strip()
+                    if try_again == "Y" and snail < 5:
+                            print(f"The snail is {5- snail} turns away from you")
+                            print("You prepare to fight again.")
+                            player_hp = 8
+                            boss_hp = 8
+                    elif try_again == "N":
+                            print("You flee from the guardian abandoning the golden egg.")
+                            game == False
+                            return golden_ball, snail
+                    if snail == 5:
+                        return golden_ball, snail
 
     elif boss_chance == 2:# return egg if no fight
         golden_egg =+ 1
-        snail =- 1
+        snail = snail - 1
         print("You grab the golden egg!")
         print("You feel the snail slowing down")
         return golden_egg, snail
 
-new_golden_egg, new_snail = boss()
-golden_egg = new_golden_egg + golden_egg #to get new value for golden egg
-snail = snail + new_snail #to get new value for snail
-print(f"You have a total of {golden_egg} golden eggs")
+new_golden_ball, snail = boss()
+golden_ball = new_golden_ball + golden_ball #to get new value for golden egg
+#snail = snail + new_snail #to get new value for snail
+print(f"You have a total of {golden_ball} golden eggs")
+print(snail)
 print(f"Snail is {5 - snail} turns away from you") #updated information from after the boss"""
+
+
