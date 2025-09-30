@@ -29,10 +29,9 @@ def boss():
                 snail = snail + 1
                 print("You have lost the battle")
                 print("The Snail gains some speed")
-                print(snail)
-                try_again = input("Do you want to try again? Y/N:").capitalize().strip()
-                if try_again == "Y" and snail < 5:
-                    print(f"The snail is {5 - snail} turns away from you")
+                try_again = input("Do you want to try again? Y/N:").upper().strip()
+                if try_again == "Y" and snail < 10:
+                    print(f"The snail is {10 - snail} turns away from you")
                     print("You prepare to fight again.")
                     player_hp = 8
                     boss_hp = 8
@@ -40,7 +39,7 @@ def boss():
                     print("You flee from the guardian abandoning the golden ball.")
                     game == False
                     return golden_ball, snail
-                if snail == 5:
+                if snail > 9:
                     return golden_ball, snail
             elif game == True:
                 print(f"You have {player_hp} health left")
@@ -105,8 +104,8 @@ def boss():
                     print("You have lost the battle")
                     print("The Snail gains some speed")
                     try_again = input("Do you want to try again? Y/N:").capitalize().strip()
-                    if try_again == "Y" and snail < 5:
-                            print(f"The snail is {5- snail} turns away from you")
+                    if try_again == "Y" and snail < 10:
+                            print(f"The snail is {10 - snail} turns away from you")
                             print("You prepare to fight again.")
                             player_hp = 8
                             boss_hp = 8
@@ -114,7 +113,7 @@ def boss():
                             print("You flee from the guardian abandoning the golden ball.")
                             game == False
                             return golden_ball, snail
-                    if snail == 5:
+                    if snail > 9:
                         return golden_ball, snail
 
     elif boss_chance == 2:# return ball if no fight
@@ -128,6 +127,6 @@ new_golden_ball, snail = boss()
 golden_ball = new_golden_ball + golden_ball #to get new value for golden ball
 #snail = snail + new_snail #to get new value for snail
 print(f"You have a total of {golden_ball} golden balls")
-print(f"Snail is {5 - snail} turns away from you") #updated information from after the boss"""
+print(f"Snail is {10 - snail} turns away from you") #updated information from after the boss"""
 
 
