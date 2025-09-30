@@ -351,7 +351,7 @@ while not game_over:
         random_list = random.sample(airports, r)
         for n, item in enumerate(random_list):
             ap_distance = calculate_distance(current_airport, item['ident'])
-            print(f"{n + 1}. {item['name']}, {item['ident']}")
+            print(f"{n + 1}. {item['name']}")
 
         # ask for destination
         ask = int(input("\033[32mSelect one of the following airports:\033[0m"))
