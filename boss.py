@@ -78,7 +78,14 @@ def boss():
                         print(f"The guardian has {boss_hp} health left")
                         print(f"You have {player_hp} health left")
                 if attack == "smash":  # smash outcomes
-                    if smash > 0:
+                    if stab < 2 and shoot < 2: # to prevent a situation where no possilble weapon can win
+                        smash = 2
+                        boss_hp = boss_hp - smash
+                        print(smash)
+                        print(f"You smash with your hammer the boss and deal {smash} amount of damage")
+                        print(f"The guardian has {boss_hp} health left")
+                        print(f"You have {player_hp} health left")
+                    elif smash > 0:
                         boss_hp = boss_hp - smash
                         print(f"You smash with your hammer the boss and deal {smash} amount of damage")
                         print(f"The guardian has {boss_hp} health left")
