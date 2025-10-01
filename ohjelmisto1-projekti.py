@@ -80,8 +80,8 @@ def boss():
                     return golden_ball, snail
             elif game == True:
                 print(f"You have {player_hp} health left")
-                                attack = (input("\033[32mWould you like to smash(1), "
-                                    "stab(2) or shoot(3) the guardian? 1/2/3 :\033[0m"))
+                attack = (input("\033[32mWould you like to smash(1), "
+                        "stab(2) or shoot(3) the guardian? 1/2/3 :\033[0m"))
 
                 if attack == "2":
                     if stab > 0:  # stab outcomes
