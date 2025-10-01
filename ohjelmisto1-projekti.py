@@ -248,9 +248,7 @@ def update_location(icao, p_range, u_money, g_id):
 # ask to show the story
 storyDialog = input('Do you want to read the background story? (Y/N): ').upper()
 if storyDialog == 'Y':
-    # print wrapped string line by line
-    for line in tarinaesim.haetarina():
-        print(line)
+    print(tarinaesim.tarina)
 
 
 
