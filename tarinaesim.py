@@ -12,10 +12,15 @@ This golden dice will be of use on your journey, good luck."  Flabbergasted by y
 you take one look at the golden dice, and the woman is gone. Something tells you there is truth in her
 words...so, will you throw the dice? Or face the Snail?\033[0m"""
 
-epilogi = """\033[34mYou've cast away the curse, you've been freed from the snail. You learned to give up your greed
-and are ready for a new step in life. You learn to look at the world in a different way. It feels like your 
-senses have been sharpened and you can appreciate even the smallest things in life.\033[0m
-"""
+epilogi = """\033[34mYou've cast away the curse, you've been freed from the snail. You learned to give up
+your greed and are ready for a new step in life. You learned to leave behind the past, and to embrace something quieter,
+something real what cannot be measured in gold. You learn to look at the world in a different way. It feels like your senses
+have been sharpened and you can appreciate even the smallest things in life.
+As you walk this new path — no longer burdened, no longer haunted — you understand this is just the beginning. A new journey.
+You don’t know where the road leads... or perhaps, where the airplanes will take you.
+But one thing is certain:
+You will never, ever, return to Brazil.
+And you will never look at a snail the same way again.\033[0m"""
 
 # Set column width to 80 characters
 #wrapper = textwrap.TextWrapper(width=80, break_long_words=False, replace_whitespace=False)
