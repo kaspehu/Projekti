@@ -381,8 +381,7 @@ while not game_over:
                     dest = random_list[ask - 1]
                     icao = dest['ident']
                     selected_distance = calculate_distance(current_airport, icao)
-                    print(
-                        f"\033[34mYou selected {dest['name']} ({icao}), which is {selected_distance:.1f} NM away.\033[0m")
+                    
                     #Delete current airport
                     for i, item in enumerate(airports):
                         if item.get('ident') == icao:
