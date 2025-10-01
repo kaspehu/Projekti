@@ -80,7 +80,8 @@ def boss():
                     return golden_ball, snail
             elif game == True:
                 print(f"You have {player_hp} health left")
-                attack = (input("\033[32mWould you like to smash(1), stab(2) or shoot(3) the guardian? 1/2/3 :\033[0m"))
+                                attack = (input("\033[32mWould you like to smash(1), "
+                                    "stab(2) or shoot(3) the guardian? 1/2/3 :\033[0m"))
 
                 if attack == "2":
                     if stab > 0:  # stab outcomes
@@ -98,7 +99,7 @@ def boss():
                         player_hp = player_hp + stab #player taking negative damage
                         print(f"The guardian has {boss_hp} health left")
                         print(f"You have {player_hp} health left")
-                if attack == "3":  # shoot outcomes
+                elif attack == "3":  # shoot outcomes
                     if shoot > 0:
                         boss_hp = boss_hp - shoot
                         print(f"\033[36mYou shoot the guardian and deal {shoot} amount of damage\033[0m")
@@ -114,7 +115,7 @@ def boss():
                         player_hp = player_hp + shoot #player taking negative damage
                         print(f"The guardian has {boss_hp} health left")
                         print(f"You have {player_hp} health left")
-                if attack == "1":  # smash outcomes
+                elif attack == "1":  # smash outcomes
                     if stab < 2 and shoot < 2: # to prevent a situation where no possible weapon can win
                         smash = 2
                         boss_hp = boss_hp - smash
@@ -126,7 +127,7 @@ def boss():
                         print(f"\033[36mYou smash with your hammer the boss and deal {smash} amount of damage\033[0m")
                         print(f"The guardian has {boss_hp} health left")
                         print(f"You have {player_hp} health left")
-                else:
+                elif attack != "1" or "2" or "3":
                     print("\033[44mYou fumble your attack missing your turn!\033[0m")
 
                 if boss_hp <= 0: #when victorious
@@ -300,7 +301,6 @@ while not game_over:
     # check goal type
     goal = check_goal(game_id, current_airport)
     snail += 1 # add + 1 on each loop
-    print(snail)
     if snail > 9: # snail "catches" you after reaching value "5"
         print('Snail Got you, Game over!')
         game_over = True
