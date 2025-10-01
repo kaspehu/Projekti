@@ -366,17 +366,24 @@ while not game_over:
     else:
 
         r = random.randint(1, 6)
-        print(f"\033[32mThe golden dice gave you {r} new airports.\033[0m")
+        if r == 1:
+            print(f"\033[32mThe golden dice gave you {r} new airport.\033[0m")
+        else:
+            print(f"\033[32mThe golden dice gave you {r} new airports.\033[0m")
         random_list = random.sample(airports, r)
         for n, item in enumerate(random_list):
             ap_distance = calculate_distance(current_airport, item['ident'])
             print(f"{n + 1}. {item['name']}")
 
 
+
         while True:
             try:
-                ask = int(input(f"\033[32mSelect one of the above airports (1 to {len(random_list)}): \033[0m"))
-
+                if r > 1:
+                    ask = int(input(f"\033[32mSelect one of the above airports (1 to {len(random_list)}): \033[0m"))
+                else:
+                    print("\033[32mYou only rolled one airport so you go there!\033[0m")
+                    ask = 1
                 if 1 <= ask <= len(random_list):
                     dest = random_list[ask - 1]
                     icao = dest['ident']
