@@ -374,11 +374,20 @@ while not game_over:
 
 
     # if 5 Golden balls, game is won
-    if golden_ball == 100:
+    if golden_ball == 5:
         game_over = True
 
 
-# if game is over loop stops
-# show game result
-print(f'''{'You won!' if golden_ball == 1 else 'You lost!'}''')
-print(f"You Found {golden_ball} Golden Balls")
+if golden_ball == 5:
+    print("You've gathered enough balls and can banish the curse!")
+    decision = input("Will you give up your balls Y/N?: ").upper()
+    if decision == 'Y':
+        epilogue_input = input("Do you want to read the epilogue Y/N?: ").upper()
+        if epilogue_input == "Y":
+            print(f"\n{tarinaesim.epilogi}")
+        else:
+            print("Thanks for playing!")
+    else:
+        print("Looks like your greed still lingers about you...the snail curses you for all eternity.")
+else:
+    print("Game over! You couldn't overcome the curse.")
