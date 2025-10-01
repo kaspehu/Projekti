@@ -55,20 +55,20 @@ def boss():
         print("You fight the guardian")
         while game == True: #while loop to play until hp reaches 0
 
-            input("Press enter to initiate the next round!")
+            input("\033[32mPress enter to initiate the next round!\033[0m")
+
             print("------------------------------")
             guardian_attack = random.randint(1, 2)
-            print(f"The guardian attacks you dealing {guardian_attack} damage")
+            print(f"\033[91mThe guardian attacks you dealing {guardian_attack} damage\033[0m")
             player_hp = player_hp - guardian_attack
             if player_hp <= 0:  # when lost
                 golden_ball = 0
                 snail = snail + 1
                 print("You have lost the battle")
                 print("The Snail gains some speed")
-                print(snail)
-                try_again = input("Do you want to try again? Y/N:").capitalize().strip()
-                if try_again == "Y" and snail < 5:
-                    print(f"The snail is {5 - snail} turns away from you")
+                try_again = input("Do you want to try again? Y/N:").upper().strip()
+                if try_again == "Y" and snail < 10:
+                    print(f"The snail is {10 - snail} turns away from you")
                     print("You prepare to fight again.")
                     player_hp = 8
                     boss_hp = 8
@@ -76,61 +76,61 @@ def boss():
                     print("You flee from the guardian abandoning the golden ball.")
                     game == False
                     return golden_ball, snail
-                if snail == 5:
+                if snail > 9:
                     return golden_ball, snail
             elif game == True:
                 print(f"You have {player_hp} health left")
-                attack = input("Would you like to smash, stab or shoot the guardian?").lower()
-                if attack == "stab":
+                attack = (input("\033[32mWould you like to smash(1), stab(2) or shoot(3) the guardian? 1/2/3 :\033[0m"))
+
+                if attack == "2":
                     if stab > 0:  # stab outcomes
                         boss_hp = boss_hp - stab
-                        print(f"You stab the guardian with your sword dealing {stab} amount of damage")
+                        print(f"\033[36mYou stab the guardian with your sword dealing {stab} amount of damage\033[0m")
                         print(f"The guardian has {boss_hp} health left")
                         print(f"You have {player_hp} health left")
                     elif stab == 0:
-                        print("Your stab is ineffective.")
+                        print("\033[35mYour stab is ineffective.\033[0m")
                         print(f"The guardian has {boss_hp} health left")
                         print(f"You have {player_hp} health left")
                     elif stab < 0:
-                        print(f"You try to stab the guardian, but you slip dealing {stab} damage to "
-                              f"yourself instead")
+                        print(f"\033[31mYou try to stab the guardian, but you slip dealing {stab} damage to "
+                              f"yourself instead\033[0m")
                         player_hp = player_hp + stab #player taking negative damage
                         print(f"The guardian has {boss_hp} health left")
                         print(f"You have {player_hp} health left")
-                if attack == "shoot":  # shoot outcomes
+                if attack == "3":  # shoot outcomes
                     if shoot > 0:
                         boss_hp = boss_hp - shoot
-                        print(f"You shoot the guardian and deal {shoot} amount of damage")
+                        print(f"\033[36mYou shoot the guardian and deal {shoot} amount of damage\033[0m")
                         print(f"The guardian has {boss_hp} health left")
                         print(f"You have {player_hp} health left")
                     elif shoot == 0:
-                        print("Your weapon seems to be ineffective.")
+                        print("\033[35mYour weapon seems to be ineffective.\033[0m")
                         print(f"The guardian has {boss_hp} health left")
                         print(f"You have {player_hp} health left")
                     elif shoot < 0:
-                        print(f"You try to shoot the guardian, but your gun explodes dealing {shoot} damage to "
-                              f"yourself instead")
+                        print(f"\033[31mYou try to shoot the guardian, but your gun explodes dealing {shoot} damage to "
+                              f"yourself instead\033[36m")
                         player_hp = player_hp + shoot #player taking negative damage
                         print(f"The guardian has {boss_hp} health left")
                         print(f"You have {player_hp} health left")
-                if attack == "smash":  # smash outcomes
-                    if stab < 2 and shoot < 2: # to prevent a situation where no possilble weapon can win
+                if attack == "1":  # smash outcomes
+                    if stab < 2 and shoot < 2: # to prevent a situation where no possible weapon can win
                         smash = 2
                         boss_hp = boss_hp - smash
-                        print(smash)
-                        print(f"You smash with your hammer the boss and deal {smash} amount of damage")
+                        print(f"\033[36mYou smash with your hammer the boss and deal {smash} amount of damage\033[0m")
                         print(f"The guardian has {boss_hp} health left")
                         print(f"You have {player_hp} health left")
                     elif smash > 0:
                         boss_hp = boss_hp - smash
-                        print(f"You smash with your hammer the boss and deal {smash} amount of damage")
+                        print(f"\033[36mYou smash with your hammer the boss and deal {smash} amount of damage\033[0m")
                         print(f"The guardian has {boss_hp} health left")
                         print(f"You have {player_hp} health left")
 
                 if boss_hp <= 0: #when victorious
                     golden_ball =+ 1
                     snail = snail - 1
-                    print(f"---You have defeated the guardian!!!---")
+                    print(f"\033[32m---You have defeated the guardian!!!---\033[0m")
                     print(f"You feel the snail slowing down")
                     print("You grab the golden ball!")
                     game == False
@@ -140,17 +140,18 @@ def boss():
                     snail = snail + 1
                     print("You have lost the battle")
                     print("The Snail gains some speed")
-                    try_again = input("Do you want to try again? Y/N:").upper().strip()
-                    if try_again == "Y" and snail < 5:
-                            print(f"The snail is {5- snail} turns away from you")
+                    try_again = input("Do you want to try again? Y/N:").capitalize().strip()
+                    if try_again == "Y" and snail < 10:
+                            print(f"The snail is {10 - snail} turns away from you")
                             print("You prepare to fight again.")
                             player_hp = 8
                             boss_hp = 8
+
                     elif try_again == "N":
                             print("You flee from the guardian abandoning the golden ball.")
                             game == False
                             return golden_ball, snail
-                    if snail == 5:
+                    if snail > 9:
                         return golden_ball, snail
 
     elif boss_chance == 2:# return ball if no fight
