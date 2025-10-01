@@ -126,6 +126,8 @@ def boss():
                         print(f"\033[36mYou smash with your hammer the boss and deal {smash} amount of damage\033[0m")
                         print(f"The guardian has {boss_hp} health left")
                         print(f"You have {player_hp} health left")
+                else:
+                    print("\033[44mYou fumble your attack missing your turn!\033[0m")
 
                 if boss_hp <= 0: #when victorious
                     golden_ball =+ 1
