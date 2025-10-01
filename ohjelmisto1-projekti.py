@@ -365,7 +365,7 @@ while not game_over:
         game_over = True
     else:
 
-      r = random.randint(1, 6)
+        r = random.randint(1, 6)
         print(f"\033[32mThe golden dice gave you {r} new airports.\033[0m")
         random_list = random.sample(airports, r)
         for n, item in enumerate(random_list):
