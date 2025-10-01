@@ -365,28 +365,38 @@ while not game_over:
         game_over = True
     else:
 
-        r = random.randint(1, 6)
+      r = random.randint(1, 6)
         print(f"\033[32mThe golden dice gave you {r} new airports.\033[0m")
         random_list = random.sample(airports, r)
         for n, item in enumerate(random_list):
             ap_distance = calculate_distance(current_airport, item['ident'])
             print(f"{n + 1}. {item['name']}")
 
-        # ask for destination
-        ask = int(input("\033[32mSelect one of the following airports:\033[0m"))
-        dest = random_list[ask - 1]  # no nested indexing
-        icao=dest['ident']
-        selected_distance = calculate_distance(current_airport, icao)
 
-        # Delete current airport
-        for i, item in enumerate(airports):
-            if item.get('ident') == icao:
-                del airports[i]
+        while True:
+            try:
+                ask = int(input(f"\033[32mSelect one of the above airports (1 to {len(random_list)}): \033[0m"))
 
-        update_location(icao, player_range, money, game_id)
-        current_airport = icao
-        if player_range < 0:
-            game_over = True
+                if 1 <= ask <= len(random_list):
+                    dest = random_list[ask - 1]
+                    icao = dest['ident']
+                    selected_distance = calculate_distance(current_airport, icao)
+                    print(
+                        f"\033[34mYou selected {dest['name']} ({icao}), which is {selected_distance:.1f} NM away.\033[0m")
+                    #Delete current airport
+                    for i, item in enumerate(airports):
+                        if item.get('ident') == icao:
+                            del airports[i]
+                            break
+                    update_location(icao, player_range, money, game_id)
+                    current_airport = icao
+                    break
+                else:
+                    print("\033[31mInvalid choice! Please select a number from the list.\033[0m")
+
+            except ValueError:
+                print("\033[31mInvalid input! Please enter a number.\033[0m")
+
 
 
     # if 5 Golden balls, game is won
