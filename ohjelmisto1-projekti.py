@@ -322,8 +322,8 @@ while not game_over:
             new_golden_ball, snail = boss()
             golden_ball = new_golden_ball + golden_ball  # to get new value for golden ball
             # snail = snail + new_snail #to get new value for snail
-            print(f"You have a total of {golden_ball} golden balls")
-            print(f"Snail is {5 - snail} turns away from you")  # updated information from after the boss"""
+            print(f"\033[93mYou have {golden_ball} golden balls\033[0m")
+            print(f"Snail is {10 - snail} turns away from you")  # updated information from after the boss"""
             input("\033[32mPress Enter to continue...\033[0m")
         elif goal['money'] == 4:
             snail += 1
