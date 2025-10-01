@@ -9,7 +9,7 @@ conn = mysql.connector.connect(
     port=3306,
     database='demogame',
     user='root',
-    password='1q2w3e',
+    password='',
     autocommit=True
 )
 
@@ -305,18 +305,27 @@ while not game_over:
         break
 
     if goal:
-        print(f"There's something in the airport...")
         if goal['money'] == 1:
             money += goal['money']
             snail -= 2
-            print(f"Congratulations! You've found a snail shield")
-            print(f"The snail won't be able to touch you for a while")
+            shield = [("You have acquired the snail shield! The thought of golden balls fills you "
+                       "with determination. The snail is 2 turns further."),
+                      ("You have acquired the snail shield! It's dangerous to go alone,"
+                       " take this. The snail is 2 turns further."),
+                      ("You have acquired the snail shield! Congratulations,"
+                       " the power of snail shield compels you to be safer. The snail is 2 turns further.")]
+            vaikutus = random.choice(shield)
+            print(f"{vaikutus}")
             input("\033[32mPress Enter to continue...\033[0m")
         elif goal['money'] == 2:
             money += goal['money']
             snail -= 1
-            print(f"Congratulations! You've found snail adhesive")
-            print(f"The Snail slows down...")
+            adhesive = [("You have acquired the snail adhesive! The snail is stuck in traffic! It's so slow.. The snail is a turn further."),
+                        ("You have acquired the snail adhesive! You found some go-away-snail-dust. You sprinkled it around,"
+                            " the snail felt that somewhere and somehow and slowed down. The snail is a turn further."),
+                        ("You have acquired the snail adhesive! Someone stepped on the snail, it spent the rest of the day recovering. The snail is a turn further.")]
+            vaikutus3 = random.choice(adhesive)
+            print(f"{vaikutus3}")
             input("\033[32mPress Enter to continue...\033[0m")
         elif goal['money'] == 3:
             new_golden_ball, snail = boss()
@@ -327,13 +336,22 @@ while not game_over:
             input("\033[32mPress Enter to continue...\033[0m")
         elif goal['money'] == 4:
             snail += 1
-            print(f'''You get a horrible headache.''')
-            print("The snail catches up...")
+            headache = [("You have acquired a headache! Your vision blurs for a moment and the world around you feels hazy, you should rest. The snail is a turn closer."),
+                        ("You have acquired a headache! Did you remember to drink enough water? The snail is a turn closer."),
+                        ("You have acquired a headache! Your head beats like a drum with every heartbeat. The snail is a turn closer.")]
+            vaikutus2 = random.choice(headache)
+            print(f"{vaikutus2}")
             input("\033[32mPress Enter to continue...\033[0m")
         else:
             snail += 2
-            print(f'''Your stomach aches like crazy...''')
-            print("The snail lurks in closer...")
+            raging = [("You have acquired a raging diarrhea! Drinking that strange tasting water wasn’t a"
+                       " great idea… The snail is 2 turns closer."),
+                      ("You have acquired a raging diarrhea! Moving around is too risky. "
+                       "You spent the rest of the day near the toilet. The snail is 2 turns closer."),
+                      ("You have acquired a raging diarrhea! "
+                       "Cold sweat rises on your forehead, your stomach is rumbling. RUN! The snail is 2 turns closer.")]
+            vaikutus1 = random.choice(raging)
+            print(f"{vaikutus1}")
             input("\033[32mPress Enter to continue...\033[0m")
 
 
