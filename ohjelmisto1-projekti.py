@@ -2,7 +2,7 @@ import random
 import tarinaesim
 from geopy import distance
 import mysql.connector
-
+import pyfiglet
 
 conn = mysql.connector.connect(
     host='localhost',
@@ -242,9 +242,17 @@ def update_location(icao, p_range, u_money, g_id):
     cursor = conn.cursor(dictionary=True)
     cursor.execute(sql, (icao, p_range, u_money, g_id))
 
+def print_intro():
+    intro = pyfiglet.figlet_format("Curse Of The Mad Snail", font="Slant")
+    print("\033[92m" + intro + "\033[0m")
+
+def print_outro():
+    outro = pyfiglet.figlet_format(f"Thank you for playing {player}!", font="Slant")
+    print("\033[92m" + outro + "\033[0m")
 
 
 # game starts
+print_intro()
 # ask to show the story
 storyDialog = input('Do you want to read the background story? (Y/N): ').upper()
 if storyDialog == 'Y':
@@ -266,14 +274,8 @@ player_range = 2000
 
 golden_ball = 0
 
-# score = 0
-score = 0
-
 # snail that chases you, beginning value 0
 snail = 0
-
-# boolean for diamond found
-diamond_found = False
 
 # all airports
 all_airports = get_airports()
@@ -355,8 +357,6 @@ while not game_over:
             input("\033[32mPress Enter to continue...\033[0m")
 
 
-    # ask to buy fuel/range
-
     # show airports in range. if none, game over
     airports = all_airports
 
@@ -382,7 +382,7 @@ while not game_over:
                 if r > 1:
                     ask = int(input(f"\033[32mSelect one of the above airports (1 to {len(random_list)}): \033[0m"))
                 else:
-                    print("\033[32mYou only rolled one airport so you go there!\033[0m")
+                    print("\033[32mYou only rolled one airport so that's where you're headed!\033[0m")
                     ask = 1
                 if 1 <= ask <= len(random_list):
                     dest = random_list[ask - 1]
@@ -423,3 +423,7 @@ if golden_ball == 5:
         print("Looks like your greed still lingers about you...the snail curses you for all eternity.")
 else:
     print("Game over! You couldn't overcome the curse.")
+
+input("\033[32mPress Enter to exit...\033[0m")
+
+print_outro()
