@@ -324,12 +324,12 @@ while not game_over:
         if goal['money'] == 1:
             money += goal['money']
             snail -= 2
-            shield = [("You have acquired the snail shield! The thought of golden balls fills you "
+            shield = [("You have acquired a snail shield! The thought of golden balls fills you "
                        "\nwith determination. The snail is 2 turns further."),
-                      ("You have acquired the snail shield! It's dangerous to go alone,"
+                      ("You have acquired a snail shield! It's dangerous to go alone,"
                        "\ntake this. The snail is 2 turns further."),
-                      ("You have acquired the snail shield! Congratulations,"
-                       "\nthe power of snail shield compels you to be safer. The snail is 2 turns further.")]
+                      ("You have acquired a snail shield! Congratulations,"
+                       "\nthe power of the snail shield compels you to be safer. The snail is 2 turns further.")]
             vaikutus = random.choice(shield)
             print(f"{vaikutus}")
             input("\033[32mPress Enter to continue...\033[0m")
@@ -337,13 +337,13 @@ while not game_over:
             money += goal['money']
             snail -= 1
             adhesive = [(
-                            "You have acquired the snail adhesive! The snail is stuck in traffic!"
+                            "You have acquired a snail adhesive! The snail is stuck in traffic!"
                             "\nIt's so slow.. The snail is a turn further."),
                         (
-                            "You have acquired the snail adhesive! You found some go-away-snail-dust. You sprinkled it around,"
+                            "You have acquired a snail adhesive! You found some go-away-snail-dust. You sprinkled it around,"
                             "\nthe snail felt that somewhere and somehow and slowed down. The snail is a turn further."),
                         (
-                            "You have acquired the snail adhesive! Someone stepped on the snail,"
+                            "You have acquired a snail adhesive! Someone stepped on the snail,"
                             "\nit spent the rest of the day recovering. The snail is a turn further.")]
             vaikutus3 = random.choice(adhesive)
             print(f"{vaikutus3}")
