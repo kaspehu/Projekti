@@ -52,6 +52,7 @@ def boss():
     game = True
     if boss_chance == 1: #if fight
         print("The ball is guarded by a golden guardian. The only way forward is to fight the guardian!")
+        input("\033[32mPress enter to continue...\033[0m")
         print("You fight the guardian")
         while game == True: #while loop to play until hp reaches 0
 
@@ -163,9 +164,12 @@ def boss():
                         return golden_ball, snail
                     else:
                         print("\033[31mInvalid input\033[0m")
-
-    elif boss_chance == 2:# return ball if no fight
-        golden_ball =+ 1
+                        
+    elif boss_chance == 2:  # return ball if no fight
+        print("The ball is guarded by a golden guardian. The only way forward is to fight the guardian!")
+        input("\033[32mPress enter to continue...\033[0m")
+        print("\033[32mYou manage to sneak past the guardian!\033[0m")
+        golden_ball = + 1
         snail = snail - 1
         print("You grab the golden ball!")
         print("You feel the snail slowing down")
