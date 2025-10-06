@@ -325,21 +325,26 @@ while not game_over:
             money += goal['money']
             snail -= 2
             shield = [("You have acquired the snail shield! The thought of golden balls fills you "
-                       "with determination. The snail is 2 turns further."),
+                       "\nwith determination. The snail is 2 turns further."),
                       ("You have acquired the snail shield! It's dangerous to go alone,"
-                       " take this. The snail is 2 turns further."),
+                       "\ntake this. The snail is 2 turns further."),
                       ("You have acquired the snail shield! Congratulations,"
-                       " the power of snail shield compels you to be safer. The snail is 2 turns further.")]
+                       "\nthe power of snail shield compels you to be safer. The snail is 2 turns further.")]
             vaikutus = random.choice(shield)
             print(f"{vaikutus}")
             input("\033[32mPress Enter to continue...\033[0m")
         elif goal['money'] == 2:
             money += goal['money']
             snail -= 1
-            adhesive = [("You have acquired the snail adhesive! The snail is stuck in traffic! It's so slow.. The snail is a turn further."),
-                        ("You have acquired the snail adhesive! You found some go-away-snail-dust. You sprinkled it around,"
-                            " the snail felt that somewhere and somehow and slowed down. The snail is a turn further."),
-                        ("You have acquired the snail adhesive! Someone stepped on the snail, it spent the rest of the day recovering. The snail is a turn further.")]
+            adhesive = [(
+                            "You have acquired the snail adhesive! The snail is stuck in traffic!"
+                            "\nIt's so slow.. The snail is a turn further."),
+                        (
+                            "You have acquired the snail adhesive! You found some go-away-snail-dust. You sprinkled it around,"
+                            "\nthe snail felt that somewhere and somehow and slowed down. The snail is a turn further."),
+                        (
+                            "You have acquired the snail adhesive! Someone stepped on the snail,"
+                            "\nit spent the rest of the day recovering. The snail is a turn further.")]
             vaikutus3 = random.choice(adhesive)
             print(f"{vaikutus3}")
             input("\033[32mPress Enter to continue...\033[0m")
@@ -355,24 +360,28 @@ while not game_over:
             input("\033[32mPress Enter to continue...\033[0m")
         elif goal['money'] == 4:
             snail += 1
-            headache = [("You have acquired a headache! Your vision blurs for a moment and the world around you feels hazy, you should rest. The snail is a turn closer."),
-                        ("You have acquired a headache! Did you remember to drink enough water? The snail is a turn closer."),
-                        ("You have acquired a headache! Your head beats like a drum with every heartbeat. The snail is a turn closer.")]
+            headache = [(
+                            "You have acquired a headache! Your vision blurs for a moment "
+                            "\nand the world around you feels hazy, you should rest. The snail is a turn closer."),
+                        (
+                            "You have acquired a headache! Did you remember to drink enough water? The snail is a turn closer."),
+                        (
+                            "You have acquired a headache! Your head beats like a drum "
+                            "\nwith every heartbeat. The snail is a turn closer.")]
             vaikutus2 = random.choice(headache)
             print(f"{vaikutus2}")
             input("\033[32mPress Enter to continue...\033[0m")
         else:
             snail += 2
             raging = [("You have acquired a raging diarrhea! Drinking that strange tasting water wasn’t a"
-                       " great idea… The snail is 2 turns closer."),
+                       "\ngreat idea… The snail is 2 turns closer."),
                       ("You have acquired a raging diarrhea! Moving around is too risky. "
-                       "You spent the rest of the day near the toilet. The snail is 2 turns closer."),
+                       "\nYou spent the rest of the day near the toilet. The snail is 2 turns closer."),
                       ("You have acquired a raging diarrhea! "
-                       "Cold sweat rises on your forehead, your stomach is rumbling. RUN! The snail is 2 turns closer.")]
+                       "\nCold sweat rises on your forehead, your stomach is rumbling. RUN! The snail is 2 turns closer.")]
             vaikutus1 = random.choice(raging)
             print(f"{vaikutus1}")
             input("\033[32mPress Enter to continue...\033[0m")
-
 
     # show airports in range. if none, game over
     airports = all_airports
@@ -392,8 +401,6 @@ while not game_over:
             ap_distance = calculate_distance(current_airport, item['ident'])
             print(f"{n + 1}. {item['name']}")
 
-
-
         while True:
             try:
                 if r > 1:
@@ -405,8 +412,8 @@ while not game_over:
                     dest = random_list[ask - 1]
                     icao = dest['ident']
                     selected_distance = calculate_distance(current_airport, icao)
-                    
-                    #Delete current airport
+
+                    # Delete current airport
                     for i, item in enumerate(airports):
                         if item.get('ident') == icao:
                             del airports[i]
@@ -420,12 +427,9 @@ while not game_over:
             except ValueError:
                 print("\033[31mInvalid input! Please enter a number.\033[0m")
 
-
-
     # if 5 Golden balls, game is won
     if golden_ball == 5:
         game_over = True
-
 
 if golden_ball == 5:
     print("You've gathered enough balls and can banish the curse!")
