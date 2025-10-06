@@ -168,7 +168,7 @@ def boss():
     elif boss_chance == 2:  # return ball if no fight
         print("The ball is guarded by a golden guardian. The only way forward is to fight the guardian!")
         input("\033[32mPress enter to continue...\033[0m")
-        print("\033[32mYou manage to sneak past the guardian!\033[0m")
+        print("You manage to sneak past the guardian!")
         golden_ball = + 1
         snail = snail - 1
         print("You grab the golden ball!")
@@ -306,7 +306,10 @@ while not game_over:
     airport = get_airport_info(current_airport)
     # show game status
     print(f'''You are at {airport['name']}.''')
-    print(f"\033[93mYou have {golden_ball} golden balls\033[0m")
+    if golden_ball == 1:
+        print(f"\033[93mYou have {golden_ball} golden ball\033[0m")
+    else:
+        print(f"\033[93mYou have {golden_ball} golden balls\033[0m")
     # pause
     input('\033[32mPress Enter to continue...\033[0m')
     # check goal type
@@ -344,7 +347,10 @@ while not game_over:
             new_golden_ball, snail = boss()
             golden_ball = new_golden_ball + golden_ball  # to get new value for golden ball
             # snail = snail + new_snail #to get new value for snail
-            print(f"\033[93mYou have {golden_ball} golden balls\033[0m")
+            if golden_ball == 1:
+                print(f"\033[93mYou have {golden_ball} golden ball\033[0m")
+            else:
+                print(f"\033[93mYou have {golden_ball} golden balls\033[0m")
             print(f"Snail is {10 - snail} turns away from you")  # updated information from after the boss"""
             input("\033[32mPress Enter to continue...\033[0m")
         elif goal['money'] == 4:
