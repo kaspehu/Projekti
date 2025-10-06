@@ -358,6 +358,8 @@ while not game_over:
                 print(f"\033[93mYou have {golden_ball} golden balls\033[0m")
             print(f"Snail is {10 - snail} turns away from you")  # updated information from after the boss"""
             input("\033[32mPress Enter to continue...\033[0m")
+            if golden_ball == 5:
+                break
         elif goal['money'] == 4:
             snail += 1
             headache = [(
