@@ -61,23 +61,27 @@ def boss():
             guardian_attack = random.randint(1, 2)
             print(f"\033[91mThe guardian attacks you dealing {guardian_attack} damage\033[0m")
             player_hp = player_hp - guardian_attack
-            if player_hp <= 0:  # when lost
-                golden_ball = 0
-                snail = snail + 1
-                print("You have lost the battle")
-                print("The Snail gains some speed")
+            while player_hp <= 0:  # when lost
                 try_again = input("Do you want to try again? Y/N:").upper().strip()
                 if try_again == "Y" and snail < 10:
+                    golden_ball = 0
+                    snail = snail + 1
                     print(f"The snail is {10 - snail} turns away from you")
-                    print("You prepare to fight again.")
+                    print("\033[32mYou prepare to fight again.\033[0m")
                     player_hp = 8
                     boss_hp = 8
                 elif try_again == "N":
+                    golden_ball = 0
+                    snail = snail + 1
                     print("You flee from the guardian abandoning the golden ball.")
                     game == False
                     return golden_ball, snail
-                if snail > 9:
+                elif snail > 9:
+                    golden_ball = 0
+                    snail = snail + 1
                     return golden_ball, snail
+                else:
+                    print("\033[31mInvalid input\033[0m")
             elif game == True:
                 print(f"You have {player_hp} health left")
                 attack = (input("\033[32mWould you like to smash(1), "
@@ -138,24 +142,27 @@ def boss():
                     print("You grab the golden ball!")
                     game == False
                     return golden_ball, snail
-                elif player_hp <= 0: #when lost
-                    golden_ball = 0
-                    snail = snail + 1
-                    print("You have lost the battle")
-                    print("The Snail gains some speed")
-                    try_again = input("Do you want to try again? Y/N:").capitalize().strip()
+                while player_hp <= 0:  # when lost
+                    try_again = input("Do you want to try again? Y/N:").upper().strip()
                     if try_again == "Y" and snail < 10:
-                            print(f"The snail is {10 - snail} turns away from you")
-                            print("You prepare to fight again.")
-                            player_hp = 8
-                            boss_hp = 8
-
+                        golden_ball = 0
+                        snail = snail + 1
+                        print(f"The snail is {10 - snail} turns away from you")
+                        print("\033[32mYou prepare to fight again.\033[0m")
+                        player_hp = 8
+                        boss_hp = 8
                     elif try_again == "N":
-                            print("You flee from the guardian abandoning the golden ball.")
-                            game == False
-                            return golden_ball, snail
-                    if snail > 9:
+                        golden_ball = 0
+                        snail = snail + 1
+                        print("You flee from the guardian abandoning the golden ball.")
+                        game == False
                         return golden_ball, snail
+                    elif snail > 9:
+                        golden_ball = 0
+                        snail = snail + 1
+                        return golden_ball, snail
+                    else:
+                        print("\033[31mInvalid input\033[0m")
 
     elif boss_chance == 2:# return ball if no fight
         golden_ball =+ 1
