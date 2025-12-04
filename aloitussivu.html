@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curse Of The Mad Snail</title>
+    <script src="aloitussivu.js" defer></script>
+    <link href="aloitussivu.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="img/otsikko.png">
+        </header>
+        <main>
+            <h2>Choose your character</h2>
+            <section id="pictures">
+                <!-- Articles from JS -->
+            </section>
+        </main>
+        <footer>
+            <button id="openPopup">Game Info</button>
+                <div id="popup" class="popup">
+                    <div class="popup-content">
+                        <span id="closePopup" class="close-btn">&times;</span>
+                        <h2>Game objective:</h2>
+                        <p id="popuptext"></p>
+                    </div>
+                </div>
+        </footer>
+        <!-- Character confirmation popup -->
+            <div id="confirmPopup" class="popup">
+              <div class="popup-content">
+                <span id="closeConfirm" class="close-btn">&times;</span>
+                <h2>Confirm character</h2>
+                <p id="confirmText"></p>
+                <div class="button-row">
+                <button id="confirmYes">Yes</button>
+                <button id="confirmNo">No</button>
+                </div>
+              </div>
+            </div>
+            <!-- Backstory popup -->
+            <div id="storyPopup" class="popup">
+              <div class="popup-content">
+                <span id="closeStory" class="close-btn">&times;</span>
+                <h2>Backstory</h2>
+                <p id="storyText" class="fade-in"></p>
+                <div class="button-center">
+                <button id="storyContinue">Continue</button>
+                </div>
+              </div>
+            </div>
+    </div>
+</body>
+</html>
