@@ -18,6 +18,7 @@ let balls = 0;
 function addGoldenBall() {
     balls++;
     document.getElementById("gold-count").textContent = balls;
+    checkGameEnd()
     addMessage("You've beaten the guardian, and got yourself a golden ball!'");
 }
 
@@ -26,7 +27,38 @@ let snailLevel = 0;
 function moveSnail() {
     snailLevel++;
     document.getElementById("snail-progress").value = snailLevel;
+    checkGameEnd()
     addMessage("The snail is getting closer...");
+}
+
+function checkGameEnd() {
+    const goldenBalls = parseInt(document.getElementById("gold-count").innerText);
+    const snailValue = parseInt(document.getElementById("snail-progress").value);
+
+    const playedCharacter = JSON.parse(localStorage.getItem("chosenCharacter"));
+
+    if (goldenBalls >= 5) {   // example win condition
+        showEndPopup("Congratulations!", "You collected enough golden balls!", "victoryscreen.html?char=" + playedCharacter);
+        return true;
+    }
+
+    if (snailValue >= 10) {
+        showEndPopup("Oh no!", "The snail has caught you!", "defeatscreen.html?char=" + playedCharacter);
+        return true;
+    }
+    return false;
+}
+
+function showEndPopup(title, message, redirectUrl) {
+    document.getElementById("endTitle").innerText = title;
+    document.getElementById("endText").innerText = message;
+
+    const popup = document.getElementById("endPopup");
+    popup.classList.remove("hide");
+
+    document.getElementById("continueBtn").onclick = () => {
+        window.location.href = redirectUrl;
+    };
 }
 
 // tähän noppafunktiota??
@@ -39,7 +71,6 @@ function addMessage(text) {
     area.appendChild(p);
     area.scrollTop = area.scrollHeight;
 }
-
 
 // game info box
 const popup = document.getElementById("popup");

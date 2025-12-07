@@ -15,7 +15,7 @@
 
 <body>
     <header>
-        <img src="img/otsikko.png">
+        <img src="img/otsikko.png" alt="Otsikko kuva">
     </header>
     <!-- containerissa pelaajan tiedot, pallot yms -->
     <div class="container">
@@ -32,7 +32,7 @@
 
             <div class="snail-meter">
                 Snail Proximity:
-                <progress id="snail-progress" max="5" value="0"></progress>
+                <progress id="snail-progress" max="10" value="0"></progress>
             </div>
 
             <div class="dice">
@@ -49,7 +49,14 @@
             <div id="map">
                 <!-- mappii ja kentti tulloo tänne sit -->
 
-
+            </div>
+            <!-- pelin lopetuspopup, kun palloja 5 tai etana max -->
+            <div id="endPopup" class="end-popup hide">
+                <div class="end-popup-content">
+                    <h2 id="endTitle"></h2>
+                    <p id="endText"></p>
+                    <button id="continueBtn">Continue</button>
+                </div>
             </div>
         </main>
 

@@ -1,0 +1,112 @@
+html {
+    font-family: "Papyrus", "Herculanum", "Curlz MT", "Impact", fantasy;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('img/wavy4.png');
+    background-repeat: repeat-x;
+    background-size: auto 100%;
+    animation: slideBg 20s linear infinite;
+}
+
+@keyframes slideBg {
+    from { background-position-x: 0; }
+    to   { background-position-x: -995px; }
+}
+
+
+#right-side-h2 {
+    text-align: center;
+    color: blue;
+    text-shadow: 2px 2px 10px gray;
+    background-color: whitesmoke;
+    box-shadow: 3px 6px 6px #ccc;
+    border-radius: 15px;
+    display: block;
+    padding: 0.5rem 1rem;
+    width: fit-content;
+    margin: 1rem auto;
+    font-size: 30px;
+}
+.container {
+    width: 60rem;
+    margin: auto;
+}
+
+header {
+    background-color: yellow;
+    padding: 1rem;
+    color: green;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    box-shadow: 4px 4px 8px black;
+    display: flex;
+    justify-content: center;
+}
+
+header img {
+    width: 40%;
+    border-radius: 15px;
+    box-shadow: 4px 4px 8px black;
+}
+
+main {
+    background-color: yellowgreen;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    box-shadow: 4px 4px 8px black;
+    padding: 0.5rem;
+}
+
+.content-wrapper {
+    display: flex;
+    gap: 2rem;           /* space between image and right-side content */
+    align-items: flex-start;
+    padding: 1rem;
+}
+
+#main-img {
+    width: 50%;
+    max-width: 420px;
+    box-shadow: 4px 4px 8px black;
+    border-radius: 15px;
+}
+
+.right-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.end-text {
+    font-size: 1.5rem;
+    background: whitesmoke;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 3px 6px 6px #ccc;
+    margin-bottom: 1rem;
+    color: blue;
+    text-shadow: 2px 2px 10px gray;
+}
+
+/* button */
+#next-btn {
+    padding: 1rem 2rem;
+    font-family: "Papyrus", "Herculanum", "Curlz MT", "Impact", fantasy;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    border: none;
+    background: yellow;
+    cursor: pointer;
+    box-shadow: 2px 4px 8px black;
+    width: fit-content;
+    margin: auto;
+    text-shadow: 2px 2px 10px gray;
+    color: green;
+}
+
+#next-btn:hover {
+    background-color: gold;
+}
