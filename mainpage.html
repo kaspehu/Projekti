@@ -11,46 +11,48 @@
     <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons/dist/ionicons/ionicons.esm.js" defer></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons/dist/ionicons/ionicons.js" defer></script>
     <script src="mainpage.js" defer></script>
+
+    <style>
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
+    </style>
+
 </head>
 
 <body>
     <header>
         <img src="img/otsikko.png" alt="Otsikko kuva">
     </header>
-    <!-- containerissa pelaajan tiedot, pallot yms -->
     <div class="container">
         <aside class="status-panel">
-
             <div class="player-info">
-                <img id="player-icon" src="" alt="">
+                <img id="player-icon" alt="Player Icon">
                 <h3 id="player-name"></h3>
             </div>
 
             <div class="golden-balls">
-                Golden Balls: <span id="gold-count">0</span>
+                Golden Balls: <span id="gold-count">0</span>/5
             </div>
 
             <div class="snail-meter">
-                Snail Proximity:
-                <progress id="snail-progress" max="10" value="0"></progress>
+                Snail Progress: <progress id="snail-progress" value="0" max="10"></progress>
             </div>
 
             <div class="dice">
-                Tähän noppa...?
-            </div>
+                </div>
 
             <div class="message-box">
-                <div id="messages"></div>
+                <div id="messages">
+                    </div>
             </div>
-
         </aside>
 
         <main>
             <div id="map">
-                <!-- mappii ja kentti tulloo tänne sit -->
+                </div>
 
-            </div>
-            <!-- pelin lopetuspopup, kun palloja 5 tai etana max -->
             <div id="endPopup" class="end-popup hide">
                 <div class="end-popup-content">
                     <h2 id="endTitle"></h2>
@@ -58,10 +60,17 @@
                     <button id="continueBtn">Continue</button>
                 </div>
             </div>
+
+            <div id="goldenBallPopup" class="event-popup hide">
+                <div class="popup-content">
+                    <h2 id="goldenBallTitle">Golden Ball Found!</h2>
+                    <p id="goldenBallText">TEST TEXT</p>
+                    <button id="collectBallBtn">Continue</button>
+                </div>
+            </div>
         </main>
 
     </div>
-    <!-- sama game info-nappi ku alkusivul -->
     <footer>
         <button id="openPopup">Game Info</button>
             <div id="popup" class="popup">
