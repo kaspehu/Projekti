@@ -348,22 +348,25 @@ footer button:hover {
     cursor: pointer;
 }
 
-#continueBtn {
-    font-family: "Papyrus", "Herculanum", "Curlz MT", "Impact", fantasy;
-    margin-top: 1rem;
-    padding: 0.5rem;
-    border: none;
-    border-radius: 15px;
-    background: yellow;
+#eventContinueBtn {
+    background-color: yellow;
     color: green;
-    font-size: 1.5rem;
+    font-family: "Papyrus", "Herculanum", "Curlz MT", "Impact", fantasy;
+    padding: 10px 25px;
+    margin: 1rem 0.5rem 0 0.5rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
     cursor: pointer;
-    box-shadow: 4px 4px 8px black;
-    text-shadow: 2px 2px 10px gray;
+    box-shadow: 3px 3px 6px black;
+    text-shadow: 2px 2px 8px gray;
+    transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-#continueBtn:hover {
-    background: gold;
+#eventContinueBtn:hover {
+    transform: scale(1.05);
+    background-color: gold;
 }
+
 
 
