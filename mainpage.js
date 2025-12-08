@@ -1,4 +1,3 @@
-
 const player = JSON.parse(localStorage.getItem("chosenCharacter"));
 
 if (player) {
@@ -19,41 +18,70 @@ let currentMarker = null;
 let airportMarkers = [];
 let visitedMarkers = new Set();
 
-const DICE_BTN_ID = "rollDiceBtn";
-const goldenBallPopup = document.getElementById("goldenBallPopup");
-const collectBallBtn = document.getElementById("collectBallBtn");
+const DICE_BTN_ID = "rollDiceBtn";// dice id
+const eventPopup = document.getElementById("eventPopup");
+const eventContinueBtn = document.getElementById("eventContinueBtn");
 
 
-function handleGoldenBallCollection() {
-    if (!currentAirport || !currentAirport.hasGoldenBall) return;
+function handleEventCollection() {
+    if (!currentAirport || currentAirport.eventCollected) return;
 
-    addGoldenBall();
-    currentAirport.hasGoldenBall = false;
-    addMessage(`The Golden Ball has been collected at ${currentAirport.name}!`);
+    const eventType = currentAirport.event;
+    let message = "";
 
-    goldenBallPopup.classList.add("hide");
+    switch (eventType) {
+        case 'goldenBall':
+            addGoldenBall();
+            message = `Golden Ball collected!`;
+            break;
+        case 'adhesive':
+            adjustSnail(-1);
+            message = `Snail Adhesive collected! Snail progress reduced by 1.`;
+            break;
+        case 'snailBoost':
+            adjustSnail(+1);
+            message = `Snail Boost collected! Snail progress increased by 1.`;
+            break;
+        default:
+            message = "Event resolved.";
+    }
 
+    if (eventType) {
+        currentAirport.eventCollected = true;
+        addMessage(`**${message}**`);
+    }
+
+    eventPopup.classList.add("hide");
     document.getElementById(DICE_BTN_ID).disabled = false;
 }
 
-collectBallBtn.addEventListener('click', handleGoldenBallCollection);
+eventContinueBtn.addEventListener('click', handleEventCollection);
 
 
-// 10 randomia palloa lentokentille
-function initializeGoldenBalls(airports) {
-    const numAirports = airports.length;
-    const numBalls = 10;
+// eventti funktio mistä tulee pallot ja buustit
+function initializeEvents(airports) {
+    airports.forEach(a => {
+        a.event = null;
+        a.eventCollected = false;
+    });
 
-    airports.forEach(a => a.hasGoldenBall = false);
+    // tsäänssit
+    const eventsToPlace = [
+        ...Array(10).fill('goldenBall'),
+        ...Array(5).fill('adhesive'),
+        ...Array(5).fill('snailBoost')
+    ];
 
-    const indices = Array.from({ length: numAirports }, (_, i) => i).sort(() => 0.5 - Math.random());
+    const shuffledAirports = airports.slice().sort(() => 0.5 - Math.random());
 
-    for (let i = 0; i < numBalls; i++) {
-        if (indices[i] !== undefined) {
-            airports[indices[i]].hasGoldenBall = true;
+    for (let i = 0; i < eventsToPlace.length; i++) {
+        const airport = shuffledAirports[i];
+        if (airport) {
+            airport.event = eventsToPlace[i];
         }
     }
 }
+
 
 function resetAirportMarkers() {
     airportMarkers.forEach(marker => {
@@ -91,7 +119,7 @@ function resetAirportMarkers() {
 function movePlayerTo(airport, marker) {
     resetAirportMarkers();
 
-    // vanha lentokenttä
+    // jo käyty lentokenttä
     if (currentMarker) {
         visitedMarkers.add(currentMarker);
         currentMarker.setStyle({
@@ -105,33 +133,52 @@ function movePlayerTo(airport, marker) {
 
     visitedMarkers.delete(currentMarker);
 
-    map.setView([airport.latitude_deg, airport.longitude_deg], 8); // eeppinen zoomi lentokentälle
-    addMessage(`You arrived at ${airport.name} (${airport.ident})!`);
-    moveSnail(); // etana liikkuu samalla kuin pelaaja
+    map.setView([airport.latitude_deg, airport.longitude_deg], 8);
+    addMessage(`You arrived at ${airport.name}!`);
+    moveSnail();// etana liikkuu kun  pelaaja liikkuu
 
-    // nykyinen lentokenttä
     currentMarker.setStyle({
         fillColor: 'yellow',
         color: 'black',
         weight: 2
     });
 
-    if (currentAirport.hasGoldenBall) {
+    if (currentAirport.event && !currentAirport.eventCollected) {
 
-        // jos pallo niin aukee ikkuna
         document.getElementById(DICE_BTN_ID).disabled = true;
-        addMessage(`**Golden Ball found!** Click 'Continue' to collect it.`);
 
-        // bossi tänne kiitos
-        document.getElementById("goldenBallText").textContent = "bossi tähän";
-        goldenBallPopup.classList.remove("hide");
+        const eventType = currentAirport.event;
+        let title = "Event Found!";
+        let text = "You encountered an unknown object. Click 'Continue' to resolve the event.";
+
+        // popup ikkuna tekstit tänne
+        switch (eventType) {
+            case 'goldenBall':
+                title = "Golden Ball Found!";
+                text = "bossi tähän";
+                break;
+            case 'adhesive':
+                title = "Snail Adhesive Found!";
+                text = "You found a powerful adhesive! The snail will slow down. Click 'Continue' to apply it.";
+                break;
+            case 'snailBoost':
+                title = "Snail Booster Found!";
+                text = "Oh no, you stumbled upon a Snail Booster! The snail will speed up. Click 'Continue' to activate it.";
+                break;
+        }
+
+        addMessage(`**${title}** at ${currentAirport.name}.`);
+
+        document.getElementById("eventTitle").textContent = title;
+        document.getElementById("eventText").textContent = text;
+        eventPopup.classList.remove("hide");
 
     } else {
         document.getElementById(DICE_BTN_ID).disabled = false;
     }
 }
 
-// noppa tässä
+// noppa
 function rollDice() {
     return Math.floor(Math.random() * 6) + 1;
 }
@@ -142,7 +189,7 @@ function handleMovement() {
     resetAirportMarkers();
 
     const roll = rollDice();
-    addMessage(`You rolled a **${roll}**! You can move to **${roll}** different airports.`);
+    addMessage(`You rolled ${roll}!`);
 
     const availableMarkers = airportMarkers.filter(marker => marker !== currentMarker);
 
@@ -152,6 +199,7 @@ function handleMovement() {
     selectableMarkers.forEach(marker => {
         const airportData = marker.airportData;
 
+        // nopan valitsema kenttä
         marker.setStyle({
             fillColor: '#27ba35',
             color: 'yellow',
@@ -163,7 +211,6 @@ function handleMovement() {
         });
     });
 
-    // ei saatavilla olevat lentokentät
     availableMarkers.filter(marker => !selectableMarkers.includes(marker)).forEach(marker => {
         marker.setStyle({
             fillColor: '#333333',
@@ -173,7 +220,7 @@ function handleMovement() {
         marker.off('click');
     });
 
-    // nykyinen lentokenttä
+    // nylyinen lentokenttä
     if (currentMarker) {
         currentMarker.setStyle({
             fillColor: 'yellow',
@@ -182,9 +229,10 @@ function handleMovement() {
     }
 
     document.getElementById(DICE_BTN_ID).disabled = true;
-    addMessage("Select one of the **highlighted** airports on the map to fly to.");
+    addMessage("Select one of the highlighted airports.");
 }
 
+// noppa nappi html
 document.querySelector('.dice').innerHTML = `
     Fly to a new location: <br>
     <button id="${DICE_BTN_ID}">Roll Dice</button>
@@ -201,12 +249,14 @@ fetch("http://localhost:5000/api/airports")
     .then(data => {
         allAirports = data; // kaikki lentokentät
 
-        initializeGoldenBalls(allAirports);
+        initializeEvents(allAirports);
 
+        // kaikki lentokentät
         data.forEach(airport => {
+
             const marker = L.circleMarker([airport.latitude_deg, airport.longitude_deg], {
                 radius: 12,
-                fillColor: '#2474ff', // Default blue
+                fillColor: '#2474ff',
                 color: 'white',
                 weight: 2,
                 opacity: 1,
@@ -244,11 +294,26 @@ function addGoldenBall() {
 // joku etanapohjustus
 let snailLevel = 0;
 function moveSnail() {
-    snailLevel++;
-    document.getElementById("snail-progress").value = snailLevel;
-    checkGameEnd()
-    addMessage("The snail is getting closer...");
+    if (!currentAirport || !currentAirport.event || currentAirport.eventCollected) {
+        adjustSnail(1);
+    }
 }
+
+// boostit ja hidasteet
+function adjustSnail(amount) {
+    const oldValue = parseInt(document.getElementById("snail-progress").value);
+    const newSnailLevel = Math.max(0, oldValue + amount); // Prevent going below 0
+    snailLevel = newSnailLevel;
+    document.getElementById("snail-progress").value = snailLevel;
+    checkGameEnd();
+
+    if (amount < 0) {
+        addMessage(`Snail's progress decreased by ${Math.abs(amount)}.`);
+    } else if (amount > 0 && amount !== 1) {
+        addMessage(`Snail's progress increased by ${amount}.`);
+    }
+}
+
 
 function checkGameEnd() {
     const goldenBalls = parseInt(document.getElementById("gold-count").innerText);
@@ -256,7 +321,7 @@ function checkGameEnd() {
 
     const playedCharacter = JSON.parse(localStorage.getItem("chosenCharacter"));
 
-    if (goldenBalls >= 5) {   // voitto
+    if (goldenBalls >= 5) {   // voitto ehto
         showEndPopup("Congratulations!", "You collected enough golden balls!", "victoryscreen.html?char=" + playedCharacter);
         return true;
     }
@@ -284,14 +349,14 @@ function showEndPopup(title, message, redirectUrl) {
 function addMessage(text) {
     const area = document.getElementById("messages");
     const p = document.createElement("p");
-    p.innerHTML = text; // Use innerHTML to allow for bolding the dice roll
+    p.innerHTML = text;
     area.appendChild(p);
 
-    // scroollaa alas ( ei toimi)
-    area.scrollDown = area.scrollHeight;
+    // info boxi scrollaa alas (ei toimi)
+    area.scrollTop = area.scrollHeight;
 }
 
-// info boxi
+//info boxi
 const popup = document.getElementById("popup");
 const openBtn = document.getElementById("openPopup");
 const closeBtn = document.getElementById("closePopup");
