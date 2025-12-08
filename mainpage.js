@@ -38,9 +38,17 @@ function handleEventCollection() {
             adjustSnail(-1);
             message = `Snail Adhesive collected! Snail progress reduced by 1.`;
             break;
-        case 'snailBoost':
+        case 'headache':
             adjustSnail(+1);
-            message = `Snail Boost collected! Snail progress increased by 1.`;
+            message = `Your head aches! Snail progress increased by 1.`;
+            break;
+        case 'shield':
+            adjustSnail(-2);
+            message = "You've aquired a snail shield, the snail slows down by 2.";
+            break;
+        case 'diarrhea':
+            adjustSnail(+2);
+            message = "A diarrhea strikes! Snail progresses by 2.";
             break;
         default:
             message = "Event resolved.";
@@ -68,8 +76,11 @@ function initializeEvents(airports) {
     // tsäänssit
     const eventsToPlace = [
         ...Array(10).fill('goldenBall'),
-        ...Array(5).fill('adhesive'),
-        ...Array(5).fill('snailBoost')
+        ...Array(7).fill('adhesive'),
+        ...Array(7).fill('headache'),
+        ...Array(3).fill('shield'),
+        ...Array(3).fill('diarrhea')
+
     ];
 
     const shuffledAirports = airports.slice().sort(() => 0.5 - Math.random());
@@ -161,9 +172,17 @@ function movePlayerTo(airport, marker) {
                 title = "Snail Adhesive Found!";
                 text = "You found a powerful adhesive! The snail will slow down. Click 'Continue' to apply it.";
                 break;
-            case 'snailBoost':
-                title = "Snail Booster Found!";
+            case 'headache':
+                title = "Headache acquired";
                 text = "Oh no, you stumbled upon a Snail Booster! The snail will speed up. Click 'Continue' to activate it.";
+                break;
+            case 'shield':
+                title = "Snail Shield found!"
+                text = "You found a snail shield...press continue";
+                break;
+            case 'diarrhea':
+                title = "Diarrhea acquired"
+                text = "Stomach rumbles...press continue"
                 break;
         }
 
@@ -348,11 +367,18 @@ function showEndPopup(title, message, redirectUrl) {
 // tekstikenttä vasemmas alakulmas pohjana mahollisille eri viesteille/tarinaelementeille
 function addMessage(text) {
     const area = document.getElementById("messages");
+
+    // Remove older messages so only 3 remain
+    while (area.children.length >= 3) {
+        area.removeChild(area.firstChild);
+    }
+
+    // Create and add the new message
     const p = document.createElement("p");
     p.innerHTML = text;
     area.appendChild(p);
 
-    // info boxi scrollaa alas (ei toimi)
+    // Correct scroll code
     area.scrollTop = area.scrollHeight;
 }
 
