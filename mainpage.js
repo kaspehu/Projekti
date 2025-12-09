@@ -224,7 +224,7 @@ function movePlayerTo(airport, marker) {
                 break;
             case 'headache':
                 title = "Headache acquired";
-                text = "Oh no, you stumbled upon a Snail Booster! The snail will speed up. Click 'Continue' to activate it.";
+                text = "Oh no, you got a headache! The snail will be closer. Click 'Continue'.";
                 break;
             case 'shield':
                 title = "Snail Shield found!"
@@ -466,3 +466,4 @@ infoText.textContent = "To win you need to banish the snail's curse. " +
 setTimeout(() => {
     map.invalidateSize();
 }, 300);
+
