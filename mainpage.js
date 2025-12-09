@@ -5,11 +5,11 @@ if (player) {
     document.getElementById("player-icon").src = player.image;
 }
 
-const map = L.map('map', { tap: false }).setView([-14.235, -51.925], 5);
+const map = L.map('map', {tap: false}).setView([-14.235, -51.925], 5);
 
 L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-  maxZoom: 20,
-  subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+    maxZoom: 20,
+    subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
 }).addTo(map);
 
 let allAirports = [];
@@ -22,6 +22,22 @@ const DICE_BTN_ID = "rollDiceBtn";// dice id
 const eventPopup = document.getElementById("eventPopup");
 const eventContinueBtn = document.getElementById("eventContinueBtn");
 
+function openModalWithPage(url) {
+  const modal = document.getElementById("modal");
+  const iframe = document.getElementById("modal-iframe");
+
+  iframe.src = url;
+
+  modal.style.display = "block";
+
+  document.getElementById("closeModal").onclick = () => {
+    modal.style.display = "none";
+    iframe.src = "";
+    addGoldenBall()
+  };
+}
+
+
 
 function handleEventCollection() {
     if (!currentAirport || currentAirport.eventCollected) return;
@@ -31,8 +47,7 @@ function handleEventCollection() {
 
     switch (eventType) {
         case 'goldenBall':
-            addGoldenBall();
-            message = `Golden Ball collected!`;
+            openModalWithPage("bossi.html")
             break;
         case 'adhesive':
             adjustSnail(-1);
@@ -166,7 +181,7 @@ function movePlayerTo(airport, marker) {
         switch (eventType) {
             case 'goldenBall':
                 title = "Golden Ball Found!";
-                text = "bossi tähän";
+                text = "Fight to claim it.";
                 break;
             case 'adhesive':
                 title = "Snail Adhesive Found!";
@@ -225,7 +240,7 @@ function handleMovement() {
             weight: 3
         });
 
-        marker.off('click').on('click', function() {
+        marker.off('click').on('click', function () {
             movePlayerTo(airportData, marker);
         });
     });
@@ -304,6 +319,7 @@ fetch("http://localhost:5000/api/airports")
 
 // kultasia palloja varten pohjustus
 let balls = 0;
+
 function addGoldenBall() {
     balls++;
     document.getElementById("gold-count").textContent = balls;
@@ -312,6 +328,7 @@ function addGoldenBall() {
 
 // joku etanapohjustus
 let snailLevel = 0;
+
 function moveSnail() {
     if (!currentAirport || !currentAirport.event || currentAirport.eventCollected) {
         adjustSnail(1);

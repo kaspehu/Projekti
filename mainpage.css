@@ -19,9 +19,15 @@ header {
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 header img {
@@ -48,6 +54,7 @@ main {
     position: relative;
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 20;
 }
 
 .status-panel {
@@ -105,17 +112,49 @@ progress[value]::-webkit-progress-value {
     transition: background-color 0.3s ease;
 }
 
-progress[value="0"]::-webkit-progress-value { background: green; }
-progress[value="1"]::-webkit-progress-value { background: green; }
-progress[value="2"]::-webkit-progress-value { background: yellowgreen; }
-progress[value="3"]::-webkit-progress-value { background: yellowgreen; }
-progress[value="4"]::-webkit-progress-value { background: yellow; }
-progress[value="5"]::-webkit-progress-value { background: yellow; }
-progress[value="6"]::-webkit-progress-value { background: orange; }
-progress[value="7"]::-webkit-progress-value { background: orange; }
-progress[value="8"]::-webkit-progress-value { background: orangered; }
-progress[value="9"]::-webkit-progress-value { background: orangered; }
-progress[value="10"]::-webkit-progress-value { background: red; }
+progress[value="0"]::-webkit-progress-value {
+    background: green;
+}
+
+progress[value="1"]::-webkit-progress-value {
+    background: green;
+}
+
+progress[value="2"]::-webkit-progress-value {
+    background: yellowgreen;
+}
+
+progress[value="3"]::-webkit-progress-value {
+    background: yellowgreen;
+}
+
+progress[value="4"]::-webkit-progress-value {
+    background: yellow;
+}
+
+progress[value="5"]::-webkit-progress-value {
+    background: yellow;
+}
+
+progress[value="6"]::-webkit-progress-value {
+    background: orange;
+}
+
+progress[value="7"]::-webkit-progress-value {
+    background: orange;
+}
+
+progress[value="8"]::-webkit-progress-value {
+    background: orangered;
+}
+
+progress[value="9"]::-webkit-progress-value {
+    background: orangered;
+}
+
+progress[value="10"]::-webkit-progress-value {
+    background: red;
+}
 
 
 .message-box {
@@ -191,6 +230,7 @@ footer button {
     cursor: pointer;
     border-radius: 10px;
 }
+
 footer button:hover {
     transform: scale(1.02);
     background-color: gold;
@@ -212,7 +252,7 @@ footer button:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0, 0, 0, 0.7);
     display: none;
     justify-content: center;
     align-items: center;
@@ -271,7 +311,7 @@ footer button:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0, 0, 0, 0.8);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -295,8 +335,14 @@ footer button:hover {
 }
 
 @keyframes popIn {
-    from { transform: scale(0.7); opacity: 0; }
-    to   { transform: scale(1); opacity: 1; }
+    from {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 #continueBtn {
@@ -325,7 +371,7 @@ footer button:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0, 0, 0, 0.8);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -368,5 +414,35 @@ footer button:hover {
     background-color: gold;
 }
 
+.modal {
+    display: none;
+    z-index: 99999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
 
 
+.modal-content {
+    background-image: url('img/airport.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 83% 100%;
+    position: relative;
+    z-index: 9999;
+}
+
+.close {
+    float: right;
+    cursor: pointer;
+    font-size: 60px;
+    color: black;
+}
+#modal-iframe {
+    position: absolute;
+    width: 78%;
+    height: 800px;
+    border: none;
+    z-index: 999;
+}

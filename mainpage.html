@@ -22,64 +22,76 @@
 </head>
 
 <body>
-    <header>
-        <img src="img/otsikko.png" alt="Otsikko kuva">
-    </header>
-    <div class="container">
-        <aside class="status-panel">
-            <div class="player-info">
-                <img id="player-icon" alt="Player Icon">
-                <h3 id="player-name"></h3>
+<header>
+    <img src="img/otsikko.png" alt="Otsikko kuva">
+</header>
+<div class="container">
+    <aside class="status-panel">
+        <div class="player-info">
+            <img id="player-icon" alt="Player Icon">
+            <h3 id="player-name"></h3>
+        </div>
+
+        <div class="golden-balls">
+            Golden Balls: <span id="gold-count">0</span>/5
+        </div>
+
+        <div class="snail-meter">
+            Snail Progress:
+            <progress id="snail-progress" value="0" max="10"></progress>
+        </div>
+
+        <div class="dice">
+        </div>
+
+        <div class="message-box">
+            <div id="messages">
             </div>
+        </div>
+    </aside>
 
-            <div class="golden-balls">
-                Golden Balls: <span id="gold-count">0</span>/5
+    <main>
+
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span id="closeModal" class="close">&times;</span>
+                <iframe id="modal-iframe"></iframe>
             </div>
+        </div>
+        <div id="map">
+        </div>
 
-            <div class="snail-meter">
-                Snail Progress: <progress id="snail-progress" value="0" max="10"></progress>
+        <div id="endPopup" class="end-popup hide">
+            <div class="end-popup-content">
+                <h2 id="endTitle"></h2>
+                <p id="endText"></p>
+                <button id="continueBtn">Continue</button>
             </div>
+        </div>
 
-            <div class="dice">
-                </div>
-
-            <div class="message-box">
-                <div id="messages">
-                    </div>
+        <div id="eventPopup" class="event-popup hide">
+            <div class="popup-content">
+                <h2 id="eventTitle">Event!</h2>
+                <p id="eventText">Event text...</p>
+                <button id="eventContinueBtn">Continue</button>
             </div>
-        </aside>
+        </div>
+    </main>
 
-        <main>
-            <div id="map">
-                </div>
+</div>
+<footer>
 
-            <div id="endPopup" class="end-popup hide">
-                <div class="end-popup-content">
-                    <h2 id="endTitle"></h2>
-                    <p id="endText"></p>
-                    <button id="continueBtn">Continue</button>
-                </div>
-            </div>
 
-            <div id="eventPopup" class="event-popup hide">
-                <div class="popup-content">
-                    <h2 id="eventTitle">Event!</h2>
-                    <p id="eventText">Event text...</p>
-                    <button id="eventContinueBtn">Continue</button>
-                </div>
-            </div>
-        </main>
+    <button id="openPopup">Game Info</button>
+    <div id="popup" class="popup">
+        <div class="popup-content">
 
+
+            <span id="closePopup" class="close-btn">&times;</span>
+            <h2>Game objective:</h2>
+            <p id="popuptext"></p>
+        </div>
     </div>
-    <footer>
-        <button id="openPopup">Game Info</button>
-            <div id="popup" class="popup">
-                <div class="popup-content">
-                    <span id="closePopup" class="close-btn">&times;</span>
-                    <h2>Game objective:</h2>
-                    <p id="popuptext"></p>
-                </div>
-            </div>
-        </footer>
+</footer>
 </body>
 </html>
