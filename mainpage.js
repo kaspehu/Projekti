@@ -42,8 +42,39 @@ function openModalWithPage(url) {
 function handleEventCollection() {
     if (!currentAirport || currentAirport.eventCollected) return;
 
+    const eventTexts = {
+    shield: [
+        "You have acquired a snail shield! The thought of golden balls fills you with determination. The snail is 2 turns further.",
+        "You have acquired a snail shield! It's dangerous to go alone, take this. The snail is 2 turns further.",
+        "You have acquired a snail shield! Congratulations, the power of the snail shield compels you to be safer. The snail is 2 turns further.",
+        "You have acquired a snail shield. A warm aura surrounds you. The snail is 2 turns further.",
+        "You have acquired a snail shield. It’s super effective! The snail is 2 turns further."
+    ],
+    adhesive: [
+        "You have acquired a snail adhesive! The snail is stuck in traffic!",
+        "It's so slow.. The snail is a turn further.",
+        "You have acquired a snail adhesive! You found some go-away-snail-dust. You sprinkled it around, the snail felt that somewhere and somehow and slowed down. The snail is a turn further.",
+        "You have acquired a snail adhesive! Someone stepped on the snail, it spent the rest of the day recovering. The snail is a turn further.",
+        "You have acquired a snail adhesive! Slow wet dragging sounds fade away. The snail is a turn further.",
+        "You have acquired a snail adhesive! The snail is confused. The snail is a turn further."
+    ],
+    headache: [
+        "You have acquired a headache! Your vision blurs for a moment and the world around you feels hazy, you should rest. The snail is a turn closer.",
+        "You have acquired a headache! Did you remember to drink enough water? The snail is a turn closer.",
+        "You have acquired a headache! Your head beats like a drum with every heartbeat. The snail is a turn closer.",
+        "You have acquired a headache. You felt a great disturbance in the Force. The snail is a turn closer."
+    ],
+    diarrhea: [
+        "You have acquired a raging diarrhea! Drinking that strange tasting water wasn’t a great idea… The snail is 2 turns closer.",
+        "You have acquired a raging diarrhea! Moving around is too risky. You spent the rest of the day near the toilet. The snail is 2 turns closer.",
+        "You have acquired a raging diarrhea! Cold sweat rises on your forehead, your stomach is rumbling. RUN! The snail is 2 turns closer.",
+        "You have acquired a raging diarrhea! Even the snail is in shock. The snail is 2 turns closer."
+    ]
+};
+
     const eventType = currentAirport.event;
     let message = "";
+    let text = "";
 
     switch (eventType) {
         case 'goldenBall':
@@ -51,19 +82,23 @@ function handleEventCollection() {
             break;
         case 'adhesive':
             adjustSnail(-1);
-            message = `Snail Adhesive collected! Snail progress reduced by 1.`;
+            text = eventTexts.adhesive[Math.floor(Math.random() * eventTexts.adhesive.length)];
+            message = text;
             break;
         case 'headache':
             adjustSnail(+1);
-            message = `Your head aches! Snail progress increased by 1.`;
+            text = eventTexts.headache[Math.floor(Math.random() * eventTexts.headache.length)];
+            message = text;
             break;
         case 'shield':
             adjustSnail(-2);
-            message = "You've aquired a snail shield, the snail slows down by 2.";
+            text = eventTexts.shield[Math.floor(Math.random() * eventTexts.shield.length)];
+            message = text;
             break;
         case 'diarrhea':
             adjustSnail(+2);
-            message = "A diarrhea strikes! Snail progresses by 2.";
+            text = eventTexts.diarrhea[Math.floor(Math.random() * eventTexts.diarrhea.length)];
+            message = text;
             break;
         default:
             message = "Event resolved.";
