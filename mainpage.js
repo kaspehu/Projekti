@@ -33,6 +33,7 @@ function openModalWithPage(url) {
     document.getElementById("closeModal").onclick = () => {
         modal.style.display = "none";
         iframe.src = "";
+        addGoldenBall()
     };
 }
 
