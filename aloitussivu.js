@@ -124,15 +124,13 @@ storyContinue.addEventListener("click", () => {
 function getBackstory(name) {
     switch (name) {
         case "Suzie Safebet":
-            return "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+            return "Suzie is an overly cautious young adult who lives her life as if it were always a moment to hide. She constantly observes her surroundings and makes decisions only after much deliberation. Her movements are slow, deliberate, and precise — as if she is trying to minimize every possible risk. When Suzie speaks, she speaks calmly, weighing each of her words carefully.";
         case "Malcolm Middleman":
-            return "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+            return "Malcolm is a middle-aged, chronically tired man whose life is so boring it borders on supernatural event. He is neither sad nor happy – just tired of everything. He does everything with precision, and nothing ever surprises him — because nothing ever changes. Malcolm moves through life guided by routine, avoiding social life and especially adventure. He is a master of everyday life, a semi-deity of mediocrity.";
         case "Howard Highroller":
-            return "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+            return "Howard is a retired casino mastermind who spent his life under the glow of gaming tables and in smoky VIP lounges. Now he is enjoying his well-earned golden years in Brazil. Though he’s left the casinos behind, his eyes still scan everything — spotting risks, hidden opportunities. He lives large, moves with effortless charm, and approaches life like a slow, steady game he intends to win purely through experience. The steady glow of a cigar and the swirl of smoke that wraps around is integral part of Howard as his confident appearance.";
         default:
             return "Your journey begins...";
     }
 }
-
-
 
