@@ -23,54 +23,52 @@ const eventPopup = document.getElementById("eventPopup");
 const eventContinueBtn = document.getElementById("eventContinueBtn");
 
 function openModalWithPage(url) {
-  const modal = document.getElementById("modal");
-  const iframe = document.getElementById("modal-iframe");
+    const modal = document.getElementById("modal");
+    const iframe = document.getElementById("modal-iframe");
 
-  iframe.src = url;
+    iframe.src = url;
 
-  modal.style.display = "block";
+    modal.style.display = "block";
 
-  document.getElementById("closeModal").onclick = () => {
-    modal.style.display = "none";
-    iframe.src = "";
-    addGoldenBall()
-  };
+    document.getElementById("closeModal").onclick = () => {
+        modal.style.display = "none";
+        iframe.src = "";
+    };
 }
-
 
 
 function handleEventCollection() {
     if (!currentAirport || currentAirport.eventCollected) return;
 
     const eventTexts = {
-    shield: [
-        "You have acquired a snail shield! The thought of golden balls fills you with determination. The snail is 2 turns further.",
-        "You have acquired a snail shield! It's dangerous to go alone, take this. The snail is 2 turns further.",
-        "You have acquired a snail shield! Congratulations, the power of the snail shield compels you to be safer. The snail is 2 turns further.",
-        "You have acquired a snail shield. A warm aura surrounds you. The snail is 2 turns further.",
-        "You have acquired a snail shield. It’s super effective! The snail is 2 turns further."
-    ],
-    adhesive: [
-        "You have acquired a snail adhesive! The snail is stuck in traffic!",
-        "It's so slow.. The snail is a turn further.",
-        "You have acquired a snail adhesive! You found some go-away-snail-dust. You sprinkled it around, the snail felt that somewhere and somehow and slowed down. The snail is a turn further.",
-        "You have acquired a snail adhesive! Someone stepped on the snail, it spent the rest of the day recovering. The snail is a turn further.",
-        "You have acquired a snail adhesive! Slow wet dragging sounds fade away. The snail is a turn further.",
-        "You have acquired a snail adhesive! The snail is confused. The snail is a turn further."
-    ],
-    headache: [
-        "You have acquired a headache! Your vision blurs for a moment and the world around you feels hazy, you should rest. The snail is a turn closer.",
-        "You have acquired a headache! Did you remember to drink enough water? The snail is a turn closer.",
-        "You have acquired a headache! Your head beats like a drum with every heartbeat. The snail is a turn closer.",
-        "You have acquired a headache. You felt a great disturbance in the Force. The snail is a turn closer."
-    ],
-    diarrhea: [
-        "You have acquired a raging diarrhea! Drinking that strange tasting water wasn’t a great idea… The snail is 2 turns closer.",
-        "You have acquired a raging diarrhea! Moving around is too risky. You spent the rest of the day near the toilet. The snail is 2 turns closer.",
-        "You have acquired a raging diarrhea! Cold sweat rises on your forehead, your stomach is rumbling. RUN! The snail is 2 turns closer.",
-        "You have acquired a raging diarrhea! Even the snail is in shock. The snail is 2 turns closer."
-    ]
-};
+        shield: [
+            "You have acquired a snail shield! The thought of golden balls fills you with determination. The snail is 2 turns further.",
+            "You have acquired a snail shield! It's dangerous to go alone, take this. The snail is 2 turns further.",
+            "You have acquired a snail shield! Congratulations, the power of the snail shield compels you to be safer. The snail is 2 turns further.",
+            "You have acquired a snail shield. A warm aura surrounds you. The snail is 2 turns further.",
+            "You have acquired a snail shield. It’s super effective! The snail is 2 turns further."
+        ],
+        adhesive: [
+            "You have acquired a snail adhesive! The snail is stuck in traffic!",
+            "It's so slow.. The snail is a turn further.",
+            "You have acquired a snail adhesive! You found some go-away-snail-dust. You sprinkled it around, the snail felt that somewhere and somehow and slowed down. The snail is a turn further.",
+            "You have acquired a snail adhesive! Someone stepped on the snail, it spent the rest of the day recovering. The snail is a turn further.",
+            "You have acquired a snail adhesive! Slow wet dragging sounds fade away. The snail is a turn further.",
+            "You have acquired a snail adhesive! The snail is confused. The snail is a turn further."
+        ],
+        headache: [
+            "You have acquired a headache! Your vision blurs for a moment and the world around you feels hazy, you should rest. The snail is a turn closer.",
+            "You have acquired a headache! Did you remember to drink enough water? The snail is a turn closer.",
+            "You have acquired a headache! Your head beats like a drum with every heartbeat. The snail is a turn closer.",
+            "You have acquired a headache. You felt a great disturbance in the Force. The snail is a turn closer."
+        ],
+        diarrhea: [
+            "You have acquired a raging diarrhea! Drinking that strange tasting water wasn’t a great idea… The snail is 2 turns closer.",
+            "You have acquired a raging diarrhea! Moving around is too risky. You spent the rest of the day near the toilet. The snail is 2 turns closer.",
+            "You have acquired a raging diarrhea! Cold sweat rises on your forehead, your stomach is rumbling. RUN! The snail is 2 turns closer.",
+            "You have acquired a raging diarrhea! Even the snail is in shock. The snail is 2 turns closer."
+        ]
+    };
 
     const eventType = currentAirport.event;
     let message = "";

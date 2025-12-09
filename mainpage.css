@@ -438,11 +438,12 @@ footer button:hover {
     cursor: pointer;
     font-size: 60px;
     color: black;
+    z-index: 99999999   ;
 }
 #modal-iframe {
     position: absolute;
-    width: 78%;
-    height: 800px;
+    width: 97%;
+    height: 900px;
     border: none;
     z-index: 999;
 }

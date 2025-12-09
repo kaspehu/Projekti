@@ -3,27 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="mainpage.js" defer></script>
     <title></title>
     <style>
-
+        html {
+            font-family: "Papyrus", "Herculanum", "Curlz MT", "Impact", fantasy;
+        }
 
 
         #my-button {
             display: flex;
             margin: auto;
             font-size: 50px;
-            background: yellowgreen;
+            background: whitesmoke;
+            padding: 1rem 2rem;
+            font-family: "Papyrus", "Herculanum", "Curlz MT", "Impact", fantasy;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 2px 4px 8px black;
+            width: fit-content;
+            text-shadow: 2px 2px 10px gray;
+            color: green;
 
         }
+
         html {
             font-family: "Papyrus", "Herculanum", "Curlz MT", "Impact", fantasy;
         }
 
-
         body {
             margin: 0;
             padding: 0;
-
             background-image: url('img/airport.png');
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -34,6 +45,7 @@
             background: yellowgreen;
             margin: auto;
             text-align: center;
+
         }
 
         img.bossi {
@@ -49,6 +61,7 @@
             margin-left: 10%;
 
         }
+
         /*.hpbar {
             height: 25px;
             background: red;
@@ -64,7 +77,6 @@
         }
 
         .hp {
-            border: black solid 2px;
             height: 100%;
             background: green;
             width: 100%;
@@ -73,9 +85,7 @@
         }
 
         .atkBtn {
-            background-color: green;
             border: none;
-            color: white;
             padding: 15px 32px;
             text-align: center;
             text-decoration: none;
@@ -83,7 +93,13 @@
             font-size: 22px;
             cursor: pointer;
             margin-left: 5%;
-            border-radius: 50%;
+            font-family: "Papyrus", "Herculanum", "Curlz MT", "Impact", fantasy;
+            border-radius: 10px;
+            background: yellow;;
+            box-shadow: 2px 4px 8px black;
+            width: fit-content;
+            text-shadow: 2px 2px 10px gray;
+            color: green;
         }
 
         #log {
@@ -104,7 +120,8 @@
             font-size: 35px;
             padding: 0;
             margin: 0 0 0 10%;
-            color: white;
+            color: yellowgreen;
+
 
         }
     </style>
@@ -116,32 +133,31 @@
     <div class="modal-content">
         <div class="container">
             <header class="page-header">
-                <h1>guardian boss</h1>
             </header>
         </div>
         <main>
             <div class="fighter">
                 <img class="bossi" src="img/bossi.png" alt="bossi">
                 <div class="hpbar"></div>
-                    <div id="hp2" class="hp">
+                <div id="hp2" class="hp">
                     <p id="hptext2">100 / 100</p>
                 </div>
-            <div class="fighter">
-                <img class="pelaaja" src="img/Suzie.png" alt="pelaaja">
-                <div class="hpbar"></div>
+                <div class="fighter">
+                    <img class="pelaaja" src="img/Suzie.png" alt="pelaaja">
+                    <div class="hpbar"></div>
                     <div id="hp1" class="hp">
-                    <p id="hptext1">100 / 100</p>
+                        <p id="hptext1">100 / 100</p>
+                    </div>
                 </div>
             </div>
-            </div>
             <div>
-            <h3>Select Your Attack:</h3>
-            <button class="atkBtn" data-type="slash">SLASH</button>
-            <button class="atkBtn" data-type="shoot">SHOOT</button>
-            <button class="atkBtn" data-type="stab">STAB</button>
+                <h3>Select Your Attack:</h3>
+                <button class="atkBtn" data-type="slash">SLASH</button>
+                <button class="atkBtn" data-type="shoot">SHOOT</button>
+                <button class="atkBtn" data-type="stab">STAB</button>
             </div>
 
-                    <div id="log"></div>
+            <div id="log"></div>
         </main>
     </div>
 </div>
@@ -171,6 +187,7 @@
         hptext1.textContent = `${heroHP} / 100`;
         hptext2.textContent = `${enemyHP} / 100`;
     }
+
     //teksti logiin funktio
     function addLog(text) {
         log.innerHTML += text + "<br>";
@@ -189,7 +206,6 @@
         } else if (type === "stab") {
             dmg = Math.floor(Math.random() * 20) + 4; // 4-24
         }
-
         enemyHP = Math.max(0, enemyHP - dmg);
         addLog(`You use ${type.toUpperCase()} and deal <strong>${dmg}</strong> damage!`);
         updateBars();
@@ -211,12 +227,14 @@
 
         turn = "hero";
     }
+
     //peli loppuu
     function endGame(message) {
         addLog("<strong>" + message + "</strong>");
         buttons.forEach(b => b.disabled = true);
-      /*  setTimeout(() => location.reload(), 20000);*/
+
     }
+
     //hyökkäykset omalla vuorolla
     buttons.forEach(btn => {
         btn.addEventListener("click", () => {
