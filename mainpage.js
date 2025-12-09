@@ -228,11 +228,11 @@ function movePlayerTo(airport, marker) {
                 break;
             case 'shield':
                 title = "Snail Shield found!"
-                text = "You found a snail shield...press continue";
+                text = "You found a snail shield... Press continue";
                 break;
             case 'diarrhea':
                 title = "Diarrhea acquired"
-                text = "Stomach rumbles...press continue"
+                text = "Stomach rumbles... Press continue"
                 break;
         }
 
@@ -466,4 +466,5 @@ infoText.textContent = "To win you need to banish the snail's curse. " +
 setTimeout(() => {
     map.invalidateSize();
 }, 300);
+
 
